@@ -1,0 +1,132 @@
+<?= $this->doctype() ?>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <?= $this->headLink() . PHP_EOL?>
+    <?= $this->headStyle() . PHP_EOL?>
+    <?= $this->headScript() . PHP_EOL?>
+    <script src="//www.project.dev:35729/livereload.js"></script>
+    <style type="text/css">
+ /* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+.breadcrumb {
+    padding-top: 60px;
+}
+
+  </style>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <?= $this->navigation()
+                   ->menu()
+                   ->setUlClass('nav navbar-nav')
+                   ->setPartial(array('navigation/menu.phtml', 'Core'))?>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+<div class="breadcrumb">
+        	Vous êtes ici : <?= $this->navigation()
+        	->breadcrumbs()
+        	->setMinDepth(0)
+        	->setRenderInvisible(true)
+        	->setSeparator(' &#8658; ')
+        	?> 
+        	</div>
+    <!-- Begin page content -->
+    <div class="container">
+      <div class="page-header">
+        <h1>Project</h1>
+      </div>
+            <?= $this->layout()->content ?>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- build:js scripts/main.min.js -->
+    <script src="/scripts/main.js"></script>
+
+    <!-- endbuild -->
+    <?php $this->inlineScript()->prependFile('/assets/jquery/dist/jquery.min.js', 'text/javascript')?>
+            <?= $this->inlineScript() . PHP_EOL?>
+    <!-- Built with love using Web Starter Kit -->
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<?php $this->headTitle('Page d\'accueil')?>
+
+<h1>Index LIVERELOAD 2</h1>
+
+<button id="test" type="button" class="btn btn-primary btn-lg">Large button</button>
+
+<?php $this->inlineScript()->captureStart()?>
+$(document).ready(function() {
+	$('#test').on('click', function() {
+		alert('JS OK');
+	});
+});
+<?php $this->inlineScript()->captureEnd()?>
+

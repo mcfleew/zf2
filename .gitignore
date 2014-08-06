@@ -1,0 +1,7 @@
+/.settings
+/.buildpath
+/.project
+/.vagrant
+/vendor
+/composer.lock
+/node_modules
