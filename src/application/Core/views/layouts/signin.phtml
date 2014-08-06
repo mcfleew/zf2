@@ -88,22 +88,12 @@ code {
           <a class="navbar-brand" href="#">Project name</a>
         </div>
         <div class="collapse navbar-collapse">
-          <?= $this->navigation()
-                   ->menu()
-                   ->setUlClass('nav navbar-nav')
-                   ->setPartial(array('navigation/menu.phtml', 'Core'))
-                   ->render()
-        ?>
+        
         </div><!--/.nav-collapse -->
       </div>
     </div>
 <div class="breadcrumb">
-        	Vous êtes ici : <?= $this->navigation()
-        	->breadcrumbs()
-        	->setMinDepth(0)
-        	->setRenderInvisible(true)
-        	->setSeparator(' / ')
-        	?> 
+        	
         	</div>
     <!-- Begin page content -->
     <div class="container">

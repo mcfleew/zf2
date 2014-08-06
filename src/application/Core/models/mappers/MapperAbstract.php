@@ -24,6 +24,9 @@ abstract class Core_Model_Mapper_MapperAbstract
 	public function find($id)
 	{
 		$row = $this->dbTable->find($id)->current();
+                if (empty($row)) {
+                    return false;
+                }
 		$object = $this->rowToObject($row);
 		return $object;
 	}

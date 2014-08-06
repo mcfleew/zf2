@@ -1,8 +1,89 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @authors   Kanstantsin A Kamkou (2ka.by); Jeroen Herczeg
  */
+        
+$html = array();
+$html[] = '    <div class="navbar navbar-default navbar-fixed-top" role="navigation">';
+$html[] = '      <div class="container">';
+$html[] = '        <div class="navbar-header">';
+$html[] = '          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">';
+$html[] = '            <span class="sr-only">Toggle navigation</span>';
+$html[] = '            <span class="icon-bar"></span>';
+$html[] = '            <span class="icon-bar"></span>';
+$html[] = '            <span class="icon-bar"></span>';
+$html[] = '          </button>';
+$html[] = '          <a class="navbar-brand" href="#">Project name</a>';
+$html[] = '        </div>';
+$html[] = '        <div class="navbar-collapse collapse">';
+$html[] = '          <ul class="nav navbar-nav">';
+ 
+foreach ($this->container as $page) {
+    // visibility of the page
+    if (!$page->isVisible()) {
+        continue;
+    }
+ 
+    // dropdown
+    $dropdown = !empty($page->pages);
+ 
+    // header
+    if ($dropdown) {
+        $html[] = '<li class="dropdown">';
+        $html[] = '<a href="#" class="dropdown-toggle" data-toggle="dropdown">';
+    } else {
+        $html[] = '<li>';
+        $html[] = '<a href="' . $page->getHref() . '">';
+    }
+    
+    $html[] = $page->getLabel();
+ 
+    if ($dropdown) {
+        $html[] = '<b class="caret"></b>';
+    }
+ 
+    $html[] = '</a>';
+ 
+    if (!$dropdown) {
+        $html[] = '</li>';
+        continue;
+    }
+ 
+    $html[] = '<ul class="dropdown-menu">';
+ 
+    foreach ($page->pages as $subpage) {
+        // visibility of the sub-page
+        if (!$subpage->isVisible()) {
+            continue;
+        }
+        if ($subpage->getLabel() == 'divider') {
+        	$html[] = '<li class="divider"></li>';
+        	continue;
+        }
+        $html[] = '<li' . ($subpage->isActive() ? ' class="active"' : '') . '>';
+        $html[] = '<a href="' . $subpage->getHref() . '">';
+ 
+        if ($subpage->get('icon')) {
+            $html[] = '<i class="icon-' . $subpage->get('icon') . '"></i>';
+        }
+ 
+        $html[] = $subpage->getLabel();
+        $html[] = "</a>";
+        $html[] = "</li>";
+    }
+ 
+    $html[] = "</ul>";
+    $html[] = "</li>";
+}
 
+$html[] = '          </ul>';
+$html[] = '          <ul class="nav navbar-nav navbar-right">';
+$html[] = '            <li><a href="../navbar/">Default</a></li>';
+$html[] = '            <li><a href="../navbar-static-top/">Static top</a></li>';
+$html[] = '            <li class="active"><a href="./">Fixed top</a></li>';
+$html[] = '          </ul>';
+$html[] = '        </div><!--/.nav-collapse -->';
+$html[] = '      </div>';
+$html[] = '    </div>';
+ 
+echo join(PHP_EOL, $html);
