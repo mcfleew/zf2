@@ -26,50 +26,49 @@
     <?= $this->headScript() . PHP_EOL?>
     <script src="//www.project.dev:35729/livereload.js"></script>
     <style type="text/css">
- /* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
-}
+    /* Sticky footer styles
+   -------------------------------------------------- */
+   html {
+     position: relative;
+     min-height: 100%;
+   }
+   body {
+     /* Margin bottom by footer height */
+     margin-bottom: 60px;
+   }
+   .footer {
+     position: absolute;
+     bottom: 0;
+     width: 100%;
+     /* Set the fixed height of the footer here */
+     height: 60px;
+     background-color: #f5f5f5;
+   }
 
 
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
+   /* Custom page CSS
+   -------------------------------------------------- */
+   /* Not required for template or sticky footer method. */
 
-body > .container {
-  padding: 60px 15px 0;
-}
-.container .text-muted {
-  margin: 20px 0;
-}
+   body > .container {
+     padding: 60px 15px 0;
+   }
+   .container .text-muted {
+     margin: 20px 0;
+   }
 
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
-}
+   .footer > .container {
+     padding-right: 15px;
+     padding-left: 15px;
+   }
 
-code {
-  font-size: 80%;
-}
+   code {
+     font-size: 80%;
+   }
 
-.breadcrumb {
-    padding-top: 60px;
-}
-
+   .breadcrumb {
+       padding-top: 60px;
+   }
   </style>
   </head>
 
@@ -88,11 +87,14 @@ code {
           <a class="navbar-brand" href="#">Project name</a>
         </div>
         <div class="collapse navbar-collapse">
-          <?= $this->navigation()
-                   ->menu()
-                   ->setUlClass('nav navbar-nav')
-                   ->setPartial(array('navigation/menu.phtml', 'Core'))
-                   ->render()
+          <?= 
+            $this->navigation()
+                 ->setAcl(Zend_Registry::get('Zend_Acl'))
+                 ->setRole($roleAuth)
+                 ->menu()
+                 ->setUlClass('nav navbar-nav')
+                 ->setPartial(array('navigation/menu.phtml', 'Core'))
+                 ->render()
         ?>
         </div><!--/.nav-collapse -->
       </div>

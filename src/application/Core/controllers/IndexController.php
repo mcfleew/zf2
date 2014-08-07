@@ -19,6 +19,14 @@ class Core_IndexController extends Zend_Controller_Action
 
     public function signinAction()
     {
+        $acl = Zend_Registry::get('Zend_Acl');
+        
+        if($acl->isAllowed()) {
+            echo 'IP non banni';
+        } else {
+            echo 'IP banni';
+        }
+        
         $this->_helper->layout()->setLayout('signin');
         $form = new Core_Form_Auth();
 
@@ -37,6 +45,15 @@ class Core_IndexController extends Zend_Controller_Action
                 $auth = Zend_Auth::getInstance($adapter);
                 $authResult = $auth->authenticate($adapter);
 
+                if ($authResult->isValid()) {
+                    $storage = $auth->getStorage();
+                    
+                    $mapper = new Core_Model_Mapper_User();
+                    $user = $mapper->authenticate($adapter->getResultRowObject(null, 'user_password'));
+                    
+                    $storage->write($user);
+                }
+                
                 if ($authResult->getCode() == Zend_Auth_Result::SUCCESS) {
                     $this->_redirect('/');
                 }
